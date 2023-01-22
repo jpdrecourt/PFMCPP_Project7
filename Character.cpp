@@ -87,6 +87,8 @@ int Character::takeDamage(int damage)
 }
 
 
+
+
 #include <cassert>
 void Character::attackInternal(Character& other)
 {
