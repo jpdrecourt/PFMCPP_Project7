@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cstdlib>
+#include <time.h>
 /*
 Project 7: Part 1/1
  video: Chapter 4 Part 2 
@@ -78,7 +80,9 @@ it's very easy to mess this task up.
 //==========================================================
 int main()
 {
-                      //name, hit points, armor. 
+    srand(time(nullptr));
+
+                       //name, hit points, armor. 
     Dwarf dwarf { "Maldin the Dwarf", 3, 1 };
     Paladin paladin { "Warrick the Paladin", 5, 2 };
     Dragon dragon { "Garry The Dragon", 200, 50 };

@@ -9,9 +9,15 @@ std::vector<std::unique_ptr<Item>> makeHelpfulItems(int num);
 
 std::vector<std::unique_ptr<Item>> makeDefensiveItems(int num);
 
-struct Character;
-std::string getCharacterStats(Character* ch);
+std::vector<std::unique_ptr<Item>> makeAttackItems(int num);
 
-void useDefensiveItem(Character*, Item&);
+struct Character;
+std::string getCharacterStats(const Character* ch);
+
+void useDefensiveItem(Character*, Item*);
 void useHelpfulItem(Character*, Item*);
 void useAttackItem(Character*, Item*);
+
+int diceRoll(int nTimes = 1, int nFaces = 6);
+
+void levelUpStat(int& stat, int& initialStat);
