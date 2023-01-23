@@ -1,8 +1,8 @@
-#include "Character.h"
 #include <iostream>
 #include <vector>
 #include <random>
 
+#include "Character.h"
 #include "DefensiveItem.h"
 #include "HelpfulItem.h"
 
@@ -110,7 +110,7 @@ void Character::attackInternal(Character& other)
     }
 }
 
-void Character::printStats()
+void Character::printStats() const
 {
     std::cout << getName() << "'s stats: " << std::endl;
     

@@ -12,12 +12,12 @@ Paladin::Paladin(std::string name_, int hp, int armor_, int attackDamage_) :
 
 Paladin::~Paladin() {}
 
-const std::string& Paladin::getName() 
+const std::string& Paladin::getName() const
 {
     return name;
 }
 
-std::string Paladin::getStats() 
+std::string Paladin::getStats() const
 {
     return getCharacterStats(this);
 }

@@ -12,12 +12,12 @@ Dwarf::Dwarf(std::string name_, int hp, int armor_, int attackDamage_) :
 Dwarf::~Dwarf() 
 {}
 
-const std::string& Dwarf::getName()
+const std::string& Dwarf::getName() const
 {
     return name;
 }
 
-std::string Dwarf::getStats()
+std::string Dwarf::getStats() const
 {
     return getCharacterStats(this);
 }

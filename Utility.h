@@ -12,7 +12,7 @@ std::vector<std::unique_ptr<Item>> makeDefensiveItems(int num);
 std::vector<std::unique_ptr<Item>> makeAttackItems(int num);
 
 struct Character;
-std::string getCharacterStats(Character* ch);
+std::string getCharacterStats(const Character* ch);
 
 void useDefensiveItem(Character*, Item*);
 void useHelpfulItem(Character*, Item*);

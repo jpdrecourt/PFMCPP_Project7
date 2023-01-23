@@ -15,11 +15,6 @@ DragonSlayer::DragonSlayer(std::string name_, int hp, int armor_, int attackDama
 
 DragonSlayer::~DragonSlayer() {} 
 
-const std::string& DragonSlayer::getName() 
-{
-    return name;
-}
-
 void DragonSlayer::attack(Character& other)
 {
     std::cout << name << " is attacking " << other.getName() << " !!" << std::endl;
@@ -49,7 +44,12 @@ void DragonSlayer::attack(Character& other)
         
 }
 
-std::string DragonSlayer::getStats()
+const std::string& DragonSlayer::getName() const
+{
+    return name;
+}
+
+std::string DragonSlayer::getStats() const
 {
     return getCharacterStats(this);
 }

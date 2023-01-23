@@ -23,12 +23,12 @@ void Dragon::attack(Character &other)
     }
 }
 
-const std::string& Dragon::getName()
+const std::string& Dragon::getName() const
 {
     return name;
 }
 
-std::string Dragon::getStats()
+std::string Dragon::getStats() const
 {
     return getCharacterStats(this);
 }
