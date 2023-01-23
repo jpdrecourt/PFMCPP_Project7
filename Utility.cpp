@@ -36,19 +36,6 @@ std::vector<std::unique_ptr<Item>> makeDefensiveItems(int num)
     return items;
 }
 
-std::vector<std::unique_ptr<Item>> makeAttackItems(int num)
-{
-    std::vector<std::unique_ptr<Item>> items;
-    
-    while( num-- > 0 )
-    {
-        items.push_back( std::unique_ptr<AttackItem>(new AttackItem()) );
-    }
-    
-    std::cout << "made " << items.size() << " attack items" << std::endl;
-    return items;
-}
-
 std::string getCharacterStats(const Character* ch)
 {
     std::string str;
@@ -117,7 +104,7 @@ void useAttackItem(Character* character, Item* item)
         //so their attack item should boost their attack damage by a factor of 10
         //this means you need to GET the attack damage, multiply it by the item's boost, and BOOST the attackDamage with that multiplied value.  
         //check Character.h for available member functions you can use.
-        ch2->boostAttackDamage( ch2->getAttackDamage()*10 );
+        ch2->boostAttackDamage( ch2->getAttackDamage() * item->getBoost() );
     }
     else if( auto* ch3 = dynamic_cast<Dragon*>(character) )
     {
@@ -133,4 +120,14 @@ int diceRoll(int nTimes, int nFaces)
         result += (rand() % nFaces) + 1;
 
     return result;        
+}
+
+void levelUpStat(int& stat, int& initialStat)
+{
+    if (stat < initialStat)
+        stat = initialStat;
+    
+    stat *= 1.1;
+
+    initialStat = stat;
 }

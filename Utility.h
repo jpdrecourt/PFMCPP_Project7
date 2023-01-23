@@ -19,3 +19,5 @@ void useHelpfulItem(Character*, Item*);
 void useAttackItem(Character*, Item*);
 
 int diceRoll(int nTimes = 1, int nFaces = 6);
+
+void levelUpStat(int& stat, int& initialStat);

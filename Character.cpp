@@ -2,6 +2,7 @@
 #include <vector>
 #include <random>
 
+#include "Utility.h"
 #include "Character.h"
 #include "DefensiveItem.h"
 #include "HelpfulItem.h"
@@ -91,20 +92,9 @@ void Character::attackInternal(Character& other)
 {
     if( other.hitPoints <= 0 )
     {
-        if (hitPoints < *initialHitPoints)
-            hitPoints = *initialHitPoints;
-        if (armor < *initialArmorLevel)
-            armor = *initialArmorLevel;
-        if (attackDamage < *initialAttackDamage)
-            attackDamage = *initialAttackDamage;
-
-        hitPoints *= 1.1;
-        armor *= 1.1;
-        attackDamage *= 1.1;
-
-        initialHitPoints.reset( new int (hitPoints) );
-        initialArmorLevel.reset( new int (armor) );
-        initialAttackDamage.reset( new int (attackDamage) );
+        levelUpStat(hitPoints, *initialHitPoints);
+        levelUpStat(armor, *initialArmorLevel);
+        levelUpStat(attackDamage, *initialAttackDamage);
         
         std::cout << getName() << " defeated " << other.getName() << " and leveled up!" << std::endl;        
     }

@@ -1,4 +1,4 @@
-#include <cassert>
+
 #include "DragonSlayer.h"
 #include "Dragon.h"
 #include "AttackItem.h"
@@ -10,7 +10,7 @@ DragonSlayer::DragonSlayer(std::string name_, int hp, int armor_, int attackDama
 {
     helpfulItems = makeHelpfulItems(diceRoll());
     defensiveItems = makeDefensiveItems(diceRoll());
-    attackItems = makeAttackItems(1);
+    attackItem.reset( new AttackItem() );
 }
 
 DragonSlayer::~DragonSlayer() {} 
@@ -27,14 +27,10 @@ void DragonSlayer::attack(Character& other)
         //look in the Character class for how the other item types are reset after use.
         while( dragon->getHP() > 0 )
         {
-            for( auto& item : attackItems )
+            if (attackItem != nullptr)
             {
-                if( auto* attackItem = dynamic_cast<AttackItem*>(item.get()) )
-                {
-                    attackItem->use(this);
-                    item.reset(); //can only be used once!
-                    break;
-                }
+                attackItem->use(this);    
+                attackItem.reset(); //can only be used once!    
             }
             dragon->takeDamage(attackDamage);
         }
