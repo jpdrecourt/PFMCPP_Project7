@@ -4,7 +4,7 @@
 
 struct Dwarf : Character
 {
-Dwarf(std::string name_, int hp, int armor_, int attackDamage_ = 0);
+Dwarf(std::string name_, int hp, int armor_, int attackDamage_ = 4);
 ~Dwarf() override;
 
 const std::string& getName() override;

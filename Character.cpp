@@ -1,6 +1,7 @@
 #include "Character.h"
 #include <iostream>
 #include <vector>
+#include <random>
 
 #include "DefensiveItem.h"
 #include "HelpfulItem.h"

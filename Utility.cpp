@@ -1,17 +1,23 @@
+#include <cstdlib>
+
 #include "Utility.h"
 
 #include "HelpfulItem.h"
 #include "DefensiveItem.h"
-#include "Character.h"
+#include "Dwarf.h"
+#include "Paladin.h"
+#include "DragonSlayer.h"
+#include "Dragon.h"
 
 #include <cassert>
+
 
 
 std::vector<std::unique_ptr<Item>> makeHelpfulItems(int num)
 {
     std::vector<std::unique_ptr<Item>> items;
     
-    while( num-- >= 0 )
+    while( num-- > 0 )
     {
         items.push_back( std::unique_ptr<HelpfulItem>(new HelpfulItem()) );
     }
@@ -24,7 +30,7 @@ std::vector<std::unique_ptr<Item>> makeDefensiveItems(int num)
 {
     std::vector<std::unique_ptr<Item>> items;
     
-    while( num-- >= 0 )
+    while( num-- > 0 )
     {
         items.push_back( std::unique_ptr<DefensiveItem>(new DefensiveItem()) );
     }
@@ -45,21 +51,21 @@ std::string getCharacterStats(Character* ch)
     return str;
 }
 
-void useDefensiveItem(Character* character, Item& item)
+void useDefensiveItem(Character* character, Item* item)
 {
     //dwarves, paladins, and DragonSlayers get extra boosts from defensive item.
     if( auto* ch = dynamic_cast<Dwarf*>(character) )
     {
-        ch->boostArmor( 1.1 * item.getBoost() );
+        ch->boostArmor( 1.1 * item->getBoost() );
     }
     else if( auto* ch = dynamic_cast<Paladin*>(character) )
     {
         //same with paladins
-        ch->boostArmor( 1.3 * item.getBoost() );
+        ch->boostArmor( 1.3 * item->getBoost() );
     }
     else if( auto* ch = dynamic_cast<DragonSlayer*>(character))
     {
-        ch->boostArmor( item.getBoost() * 1.5 );
+        ch->boostArmor( 1.5 * item->getBoost() );
     }
     else if( auto* ch = dynamic_cast<Dragon*>(character) )
     {
@@ -107,4 +113,14 @@ void useAttackItem(Character* character, Item* item)
     {
         //dragons don't carry attack items!
     }
+}
+
+int diceRoll(int nTimes, int nFaces)
+{
+    int result = 0;
+    
+    for (int i = 0; i < nTimes; ++i)
+        result += (rand() % nFaces) + 1;
+
+    return result;        
 }
